@@ -1,6 +1,7 @@
 import React from "react";
 import ImageData from "../Source.json";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ProductCard = (product) => {
   // Access mainPath from the product's ImageData object
@@ -28,7 +29,9 @@ const ProductCard = (product) => {
         <img className="card-img-top mx-auto" src={imageUrl} />
         <div className="card-body d-flex flex-column">
           <h5 className="card-title">
-            <a href="">{product.product.name}</a>
+            <Link to={"/product/" + product.product._id}>
+              {product.product.name}
+            </Link>
           </h5>
           <div className="ratings mt-auto">
             <div
@@ -39,9 +42,13 @@ const ProductCard = (product) => {
             </div>
           </div>
           <p className="card-text">${product.product.price}</p>
-          <a href="#" id="view_btn" className="btn btn-block">
+          <Link
+            to={"/product/" + product.product._id}
+            id="view_btn"
+            className="btn btn-block"
+          >
             View Details
-          </a>
+          </Link>
         </div>
       </div>
     </div>

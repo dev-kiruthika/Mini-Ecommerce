@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../Components/ProductCard";
-
+import { useSearchParams } from "react-router-dom";
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const [SearchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
-    fetch(import.meta.env.VITE_API_URL + "/products")
+    fetch(import.meta.env.VITE_API_URL + "/products?" + SearchParams)
       .then((res) => res.json())
       .then((res) => setProducts(res.products));
-  }, []);
+  }, [SearchParams]);
   return (
     <>
       <h1 id="products_heading">Latest Products</h1>
