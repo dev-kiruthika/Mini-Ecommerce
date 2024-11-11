@@ -8,6 +8,13 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+<<<<<<< HEAD
+=======
+
+.frontend/node_modules
+.Backend/node_modules
+
+>>>>>>> 538e3d64309fbf1264f3811045dd7d1e4382bca1
 dist
 dist-ssr
 *.local
