@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ImageData from "../Source.json";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { toast } from "react-toastify";
 
-const ProductDetail = () => {
+const ProductDetail = ({ cartItems, setCartItems }) => {
   const mainPath = ImageData.mainPath;
   const [product, setProducts] = useState(null);
+  const [qty, setQty] = useState(1);
   const { id } = useParams();
 
   useEffect(() => {
@@ -28,7 +30,25 @@ const ProductDetail = () => {
     }
     return stars;
   };
-
+  function addToCart() {
+    const itemExist = cartItems.find((item) => item.product._id == product._id);
+    if (!itemExist) {
+      const newItem = { product, qty };
+      setCartItems((state) => [...state, newItem]);
+      toast.success("Cart Item Added Succesfully");
+    }
+  }
+  function increaseQty() {
+    if (product.stock == qty) {
+      return;
+    }
+    setQty((state) => state + 1);
+  }
+  function decreaseQty() {
+    if (qty > 1) {
+      setQty((state) => state - 1);
+    }
+  }
   return (
     product && (
       <div className="container container-fluid">
@@ -55,17 +75,23 @@ const ProductDetail = () => {
             <p id="product_price">${product.price}</p>{" "}
             {/* Add currency symbol */}
             <div className="stockCounter d-inline">
-              <span className="btn btn-danger minus">-</span>
+              <span className="btn btn-danger minus" onClick={decreaseQty}>
+                -
+              </span>
               <input
                 type="number"
                 className="form-control count d-inline"
-                value="1"
+                value={qty}
                 readOnly
               />
-              <span className="btn btn-primary plus">+</span>
+              <span className="btn btn-primary plus" onClick={increaseQty}>
+                +
+              </span>
             </div>
             <button
               type="button"
+              onClick={addToCart}
+              disabled={product.stock == 0}
               id="cart_btn"
               className="btn btn-primary d-inline ml-4"
             >
