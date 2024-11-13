@@ -13,8 +13,8 @@ exports.createOrder = async (req, res, next) => {
 
   // Updating Product stock
   cartItems.forEach(async (item) => {
-    productModel.findById(item.product._id);
-    product.stock = (await product.stock) - item.qty;
+    const product = await productModel.findById(item.product._id);
+    product.stock = product.stock - item.qty;
     await product.save();
   });
 

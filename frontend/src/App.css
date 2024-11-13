@@ -1,7 +1,7 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 html,
 body {
-  font-family: "Amazon Ember";
+  font-family: "Outfit", sans-serif;
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -87,6 +87,7 @@ nav {
 }
 .card-title a {
   color: #2e2e2e;
+  text-decoration: none;
 }
 
 .card-title a:hover {
@@ -625,4 +626,32 @@ ul.CTAs a {
 .review_user {
   font-size: 0.8rem;
   color: grey;
+}
+/* Responsive*/
+@media (max-width: 750px) {
+  .input-group {
+    margin-left: 5%;
+  }
+  .navbar-brand {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+  }
+
+  .navbar-brand img {
+    max-width: 100%; /* Ensures the image fits within the container */
+    height: auto;
+  }
+}
+@media (min-width: 750px) and (max-width: 950px) {
+  .input-group {
+    margin-left: 17%;
+  }
+}
+@media (min-width: 770px) and (max-width: 996px) {
+  #product_image {
+    display: flex;
+    justify-content: center; /* Centers the image horizontally */
+    align-items: center; /* Centers the image vertically if needed */
+  }
 }

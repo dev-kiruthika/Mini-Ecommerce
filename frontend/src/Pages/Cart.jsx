@@ -172,11 +172,11 @@ const Cart = ({ cartItems, setCartItems }) => {
       </div>
     </Fragment>
   ) : !complete ? (
-    <h2 className="mt-5">Your Cart is Empty!</h2>
+    <h2 className="mt-5 text-center">Your Cart is Empty!</h2>
   ) : (
     <Fragment>
-      <h2 className="mt-5">Order Completed!</h2>
-      <p> Your order has been placed successfully</p>
+      <h2 className="mt-5 text-center">Order Completed!</h2>
+      <p className="text-center"> Your order has been placed successfully</p>
     </Fragment>
   );
 };
